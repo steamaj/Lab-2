@@ -25,13 +25,23 @@ app.get('/all_movies', function (req, res) {
 app.get('/action', function (req, res) {
    data.forEach(function(movieData){
     if(movieData.genre === "Action" && movieData.gross > 20000000){
-      var movieName = movieData.movie;
+      var movieName = movieData.movie + '\n';
       console.log(movieName);
       res.write(movieName);
     }
-  })   
+  })  
+  res.end(); 
 })
 
 //Create a function that list the movies that are rated "PG-13" and number of tickets sold is between 1 and 5 million 
-
+app.get('/pg', function (req, res) {
+  data.forEach(function(movieData){
+   if(movieData.mpaa === "PG-13" && movieData.tickets_sold > 1000000 && movieData.tickets_sold < 5000000){
+     var movieName = movieData.movie + '\n';
+     console.log(movieName);
+     res.write(movieName);
+   }
+ })  
+ res.end(); 
+})
 //Create a function that sort the movies based on "distributor" (+2 extra credit)
